@@ -1,4 +1,4 @@
-# Blockchain, DLT, and Decentralized Applications – Lab Course
+# Blockchain, DLT, and Decentralized Applications – Lab Course (Prof. Luca Spalazzi)
 
 This repository hosts the lab materials for the **Blockchain, Distributed Ledger Technology (DLT), and Decentralized Applications** course.  
 All students will have open access to code examples, exercises, and tasks.
