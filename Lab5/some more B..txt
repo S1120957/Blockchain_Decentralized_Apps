@@ -1,0 +1,30 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+contract A{      //external function visibility 
+    function add(uint a,uint b) external pure  returns(uint){
+        uint c= a+b;
+        return c;
+        }
+    function MainMultiplication(uint a,uint b) internal pure returns(uint){ 
+        uint c=a*b;
+        return c;
+        }
+    function TakeInternalFunction(uint a,uint b) public pure returns(uint){
+      uint c=MainMultiplication(a,b);
+      return c;
+      }
+}
+contract B {
+    A newa= new A();
+    function add(uint a,uint b)public view  returns(uint){
+        uint c= newa.add(a, b);
+        return c;
+    }
+}
+contract derivateA is A{
+function childMultiplication(uint a,uint b)public pure  returns(uint) {
+
+        uint c= MainMultiplication(a,b);
+        return c;
+    }
+}

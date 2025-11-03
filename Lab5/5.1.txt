@@ -1,0 +1,17 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+contract Parent {
+    string public greeting = "Hello from Parent";
+
+    function sayHello() public view virtual returns (string memory) {
+        return greeting;
+    }
+}
+
+contract Child is Parent {
+    // Override the parent function
+    function sayHello() public view override returns (string memory) {
+        return "Hello from Child";
+    }
+}

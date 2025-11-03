@@ -1,0 +1,16 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+contract Parent {
+    mapping(uint => string) public records;
+
+    function setRecord(uint id, string memory data) public {
+        records[id] = data;
+    }
+}
+
+contract Child is Parent {
+    function getRecord(uint id) public view returns (string memory) {
+        return records[id];
+    }
+}

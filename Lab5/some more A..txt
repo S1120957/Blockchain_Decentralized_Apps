@@ -1,0 +1,27 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+contract A{
+    function add(uint a,uint b) public virtual pure returns(uint){
+        uint c= a+b;
+        return c;}
+    function sub(uint a,uint b) public pure returns(uint){
+    require(a>b,"a is less then b");
+        uint c= a-b;
+        return c;
+    }
+}
+contract B {
+    function add(uint a,uint b) public virtual   pure  returns(uint) {
+        uint c= a+b;
+        return c;}
+    function divide(uint a,uint b) public pure returns(uint){
+        require(a>b,"a is less then b");
+        uint c= a/b;
+        return c;}
+}
+contract Inheritence is A, B{   //if we call parent class function
+    function add(uint a,uint b) public override(A,B)  pure returns(uint){
+    require(a>b,"a is less then b");
+        uint c= a+b;
+        return c;}
+}

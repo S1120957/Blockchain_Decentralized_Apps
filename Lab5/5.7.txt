@@ -1,0 +1,26 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+contract Parent {
+    // Internal function
+    function _calculateInternal(uint a, uint b) internal pure returns (uint) {
+        return a + b;
+    }
+
+    // External function
+    function calculateExternal(uint a, uint b) external pure returns (uint) {
+        return a * b;
+    }
+}
+
+contract Child is Parent {
+    // Accessing the internal function from the parent
+    function useInternalCalculation(uint a, uint b) public pure returns (uint) {
+        return _calculateInternal(a, b); // Can be accessed
+    }
+
+    // Attempting to use the external function directly within the contract
+    // function useExternalCalculation(uint a, uint b) public pure returns (uint) {
+    //     return calculateExternal(a, b); // Error: external functions can't be called internally
+    // }
+}

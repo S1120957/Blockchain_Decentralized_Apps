@@ -1,0 +1,20 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+contract Parent {
+    uint internal internalValue = 42;
+
+    function externalFunction() external pure returns (string memory) {
+        return "This is an external function";
+    }
+
+    function internalFunction() internal view returns (uint) {
+        return internalValue;
+    }
+}
+
+contract Child is Parent {
+    function useInternalFunction() public view returns (uint) {
+        return internalFunction();
+    }
+}

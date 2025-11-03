@@ -1,0 +1,26 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+contract Grandparent {
+    function identify() public pure virtual returns (string memory) {
+        return "Grandparent";
+    }
+}
+
+contract Parent1 is Grandparent {
+    function identify() public pure virtual override returns (string memory) {
+        return "Parent1";
+    }
+}
+
+contract Parent2 is Grandparent {
+    function identify() public pure virtual override returns (string memory) {
+        return "Parent2";
+    }
+}
+
+contract Child is Parent1, Parent2 {
+    function identify() public pure override(Parent1, Parent2) returns (string memory) {
+        return string(abi.encodePacked(super.identify(), " -> Child"));
+    }
+}
