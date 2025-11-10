@@ -1,0 +1,28 @@
+//SPD-License-Identifier: GPL-3.0
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+contract PayableExample
+{
+//change the address after deploy, it will not deposit the ether
+address public owner=0x5B38Da6a701c568545dCfcB03FcB875f56beddC4;
+//if we only declare a function with public without any parameter, 
+//then we add payabl function, which indicates that this function 
+//send or receive ethers 
+
+//if payable receive any ether then its color is red
+//read function is blue
+//write function is yellow
+function deposit()public payable  onlyOwner {
+ 
+    }
+
+        modifier onlyOwner() {
+
+        require(msg.sender == owner, "Only the owner send the ether");
+        _; // This underscore indicates where the function's code will be inserted
+    }
+function checkBalance() public view returns (uint) {
+    return address(this).balance;
+    }
+}

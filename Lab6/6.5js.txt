@@ -1,0 +1,26 @@
+const EventSubscriptionExample = artifacts.require("EventSubscriptionExample");
+
+module.exports = async (callback) => {
+    try {
+        const instance = await EventSubscriptionExample.deployed();
+
+        // Subscribe to Transfer events
+        instance.events
+            .Transfer({
+                fromBlock: "latest",
+            })
+            .on("data", (event) => {
+                console.log("New Transfer Event: ", event.returnValues);
+            })
+            .on("error", console.error);
+
+        // Trigger some events
+        await instance.transfer("0x1234...abcd", 50, { from: "0xYourAccount1" });
+        await instance.transfer("0x5678...efgh", 100, { from: "0xYourAccount2" });
+
+        console.log("Event subscription started...");
+    } catch (error) {
+        console.error(error);
+    }
+    callback();
+};

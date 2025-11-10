@@ -1,0 +1,27 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+//transfer is used to send wei to another account. 
+contract transferExample
+{
+    address payable _receive;
+//this deposit function automatically send the given 
+//amount(enter in the Account after demploy) to the contract
+    function deposit()public payable  {
+    }
+//this function withdraw amount from the contract to given any address
+//please notee that the coin will be in  wei 
+//(if we send 1 eth, then we must put 18 zero (i-e (1000000000000000000))
+    function Transfer(address payable _to,uint amount) public  {
+  require(address(this).balance>=amount,"enough balance in your wallet ");
+     _to.transfer(amount);
+     _receive=_to;
+    }
+//this function show the recevier amount
+    function checkReceiverBalance()  public view  returns (uint){
+        return _receive.balance;   
+    }
+//this function show the contract amount.
+    function checkSenderBalance() public view  returns (uint){
+        return address(this).balance;  
+    }
+}

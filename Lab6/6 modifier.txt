@@ -1,0 +1,24 @@
+// Contract with a modifier
+pragma solidity ^0.8.0;
+
+contract AccessControlExample {
+    address public owner;
+    uint public data;
+
+    modifier onlyOwner() {
+        require(msg.sender == owner, "Only the owner can call this function");
+        _; // This underscore indicates where the function's code will be inserted
+    }
+
+    constructor() {
+        owner = msg.sender;
+    }
+
+    function setData(uint _data) public onlyOwner {
+        data = _data;
+    }
+
+    function getData() public view returns (uint) {
+        return data;
+    }
+}

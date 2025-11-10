@@ -1,0 +1,23 @@
+const EventFilterExample = artifacts.require("EventFilterExample");
+
+module.exports = async (callback) => {
+    try {
+        const instance = await EventFilterExample.deployed();
+
+        // Trigger events
+        await instance.transfer("0x1234...abcd", 50, { from: "0xYourAccount1" });
+        await instance.transfer("0x5678...efgh", 100, { from: "0xYourAccount1" });
+
+        // Set a filter for events from a specific address
+        const events = await instance.getPastEvents("Transfer", {
+            filter: { from: "0xYourAccount1" },
+            fromBlock: 0,
+            toBlock: "latest",
+        });
+
+        console.log("Filtered Events: ", events);
+    } catch (error) {
+        console.error(error);
+    }
+    callback();
+};

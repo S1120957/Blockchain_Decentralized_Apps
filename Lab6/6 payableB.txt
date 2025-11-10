@@ -1,0 +1,17 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+//send 
+contract PayableExample
+{
+    mapping (address=>uint)  senderAddress;
+//if payable receive any ether then its color is red
+//read function is blue
+//write function is yellow
+function depositToOwner(address owneraddress)public payable  {
+    senderAddress[owneraddress]+=msg.value;
+    }
+
+function checkBalance(address owneraddress) public view returns (uint) {
+    return senderAddress[owneraddress];
+    }
+}

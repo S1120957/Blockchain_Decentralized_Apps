@@ -1,0 +1,18 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+const Contract = artifacts.require("EventExample");
+
+contract("EventExample", (accounts) => {
+    it("should emit Transfer event", async () => {
+        const instance = await Contract.deployed();
+        const tx = await instance.transfer(accounts[1], 100);
+
+        // Retrieving the emitted event
+        const event = tx.logs[0];
+        assert.equal(event.event, "Transfer", "Event name is incorrect");
+        assert.equal(event.args.from, accounts[0], "Sender address is incorrect");
+        assert.equal(event.args.to, accounts[1], "Recipient address is incorrect");
+        assert.equal(event.args.amount, 100, "Amount is incorrect");
+    });
+});

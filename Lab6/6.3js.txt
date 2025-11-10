@@ -1,0 +1,19 @@
+const EventExample = artifacts.require("EventExample");
+
+contract("EventExample", (accounts) => {
+    it("should emit a Transfer event", async () => {
+        const instance = await EventExample.deployed();
+
+        // Trigger the event
+        const tx = await instance.transfer(accounts[1], 100);
+
+        // Retrieve the event log
+        const event = tx.logs[0];
+        console.log("Event Data: ", event.args);
+
+        assert.equal(event.event, "Transfer", "Event name is incorrect");
+        assert.equal(event.args.from, accounts[0], "Sender address is incorrect");
+        assert.equal(event.args.to, accounts[1], "Recipient address is incorrect");
+        assert.equal(event.args.amount, 100, "Amount is incorrect");
+    });
+});

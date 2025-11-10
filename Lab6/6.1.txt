@@ -1,0 +1,13 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+contract EventExample {
+    // Declaring an event
+    event Transfer(address indexed from, address indexed to, uint amount);
+
+    // Function to perform a transfer and emit the event
+    function transfer(address to, uint amount) public {
+        // Emit the Transfer event
+        emit Transfer(msg.sender, to, amount);
+    }
+}
